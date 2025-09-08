@@ -2,7 +2,6 @@
 import { Icon } from '@iconify/vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { ref, computed } from 'vue';
-
 // User data
 const currentUser = ref({
   name: 'John Doe',
@@ -183,14 +182,14 @@ const formatNumber = (num) => {
   <Head title="Social Forum" />
 
   <div class="min-h-screen bg-gray-50">
-    <!-- Header - Twitter/X Style -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
       <div class="max-w-6xl mx-auto px-4">
         <div class="flex items-center justify-between h-16">
           <!-- Logo -->
           <div class="flex items-center space-x-3">
-            <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
-              <span class="text-white font-bold text-sm">F</span>
+            <div class="w-8 h-8 rounded-full flex items-center justify-center">
+              <img id="background" class=" max-w-[80px]"
+                src="/assets/forum.png" />
             </div>
             <h1 class="text-xl font-bold text-gray-900">Forum</h1>
           </div>
@@ -218,13 +217,13 @@ const formatNumber = (num) => {
             <template v-else>
               <Link :href="route('login')"
                 class="px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-full transition-colors duration-200">
-               <!-- <Icon icon="mdi-light:home" /> -->
+              <!-- <Icon icon="mdi-light:home" /> -->
               Log in
               </Link>
               <Link :href="route('register')"
                 class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors duration-200 font-medium">
-                <!-- <font-awesome-icon :icon="['fas', 'home']" /> -->
-                Sign up
+              <!-- <font-awesome-icon :icon="['fas', 'home']" /> -->
+              Sign up
               </Link>
             </template>
           </nav>
