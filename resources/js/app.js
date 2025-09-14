@@ -8,7 +8,8 @@ import { ZiggyVue } from "../../vendor/tightenco/ziggy";
 import "./icons";
 import { Icon } from "@iconify/vue";
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
+import Antd from 'ant-design-vue'; 
+import 'ant-design-vue/dist/reset.css';
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
 createInertiaApp({
@@ -22,6 +23,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
+            .use(Antd)
             .component("font-awesome-icon", FontAwesomeIcon)
             .component("Icon", Icon)
             .mount(el);

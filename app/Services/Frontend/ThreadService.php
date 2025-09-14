@@ -2,6 +2,8 @@
 
 namespace App\Services\Frontend;
 
+use App\Models\Thread;
+
 class ThreadService
 {
     /**
@@ -9,7 +11,8 @@ class ThreadService
      */
     public function list($request)
     {
-        //
+        $threads = Thread::with(['category','tags','user'])->latest()->paginate(10);
+        return [$threads];
     }
 
     /**

@@ -8,7 +8,9 @@ const currentUser = ref({
   avatar: '👨‍💻',
   username: '@johndoe'
 });
-
+const props = defineProps({
+  threads : Object
+})
 // Navigation items
 const navItems = ref([
   { id: 1, name: 'Home', icon: '🏠', isActive: true },
@@ -188,8 +190,7 @@ const formatNumber = (num) => {
           <!-- Logo -->
           <div class="flex items-center space-x-3">
             <div class="w-8 h-8 rounded-full flex items-center justify-center">
-              <img id="background" class=" max-w-[80px]"
-                src="/assets/forum.png" />
+              <img id="background" class=" max-w-[50px]" src="/assets/forum.png" />
             </div>
             <h1 class="text-xl font-bold text-gray-900">Forum</h1>
           </div>
@@ -285,27 +286,6 @@ const formatNumber = (num) => {
         <!-- Main Feed -->
         <div class="lg:col-span-2">
           <div class="space-y-4">
-            <!-- Feed Header -->
-            <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
-              <div class="flex space-x-4 border-b border-gray-200">
-                <button :class="[
-                  'px-4 py-2 font-medium transition-colors duration-200 border-b-2',
-                  activeTab === 'For You'
-                    ? 'text-blue-600 border-blue-600'
-                    : 'text-gray-600 border-transparent hover:text-gray-900'
-                ]" @click="activeTab = 'For You'">
-                  For You
-                </button>
-                <button :class="[
-                  'px-4 py-2 font-medium transition-colors duration-200 border-b-2',
-                  activeTab === 'Following'
-                    ? 'text-blue-600 border-blue-600'
-                    : 'text-gray-600 border-transparent hover:text-gray-900'
-                ]" @click="activeTab = 'Following'">
-                  Following
-                </button>
-              </div>
-            </div>
 
             <!-- Create Post -->
             <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
@@ -344,8 +324,30 @@ const formatNumber = (num) => {
               </div>
             </div>
 
+            <!-- Feed Header -->
+            <div class="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm">
+              <div class="flex space-x-4 border-b border-gray-200">
+                <button :class="[
+                  'px-4 py-2 font-medium transition-colors duration-200 border-b-2',
+                  activeTab === 'For You'
+                    ? 'text-blue-600 border-blue-600'
+                    : 'text-gray-600 border-transparent hover:text-gray-900'
+                ]" @click="activeTab = 'For You'">
+                  For You
+                </button>
+                <button :class="[
+                  'px-4 py-2 font-medium transition-colors duration-200 border-b-2',
+                  activeTab === 'Following'
+                    ? 'text-blue-600 border-blue-600'
+                    : 'text-gray-600 border-transparent hover:text-gray-900'
+                ]" @click="activeTab = 'Following'">
+                  Following
+                </button>
+              </div>
+            </div>
+
             <!-- Posts Feed -->
-            <div class="space-y-4">
+            <div class="space-y-4" v-if="filteredPosts.length > 0">
               <article v-for="post in filteredPosts" :key="post.id"
                 class="bg-white rounded-2xl p-6 border border-gray-200 hover:border-gray-300 transition-all duration-200 shadow-sm">
                 <!-- Post Header -->
@@ -441,6 +443,9 @@ const formatNumber = (num) => {
                   </div>
                 </div>
               </article>
+            </div>
+            <div v-else class="h-[50vh] flex items-center justify-center">
+              <a-empty :image="simpleImage" />
             </div>
           </div>
         </div>
