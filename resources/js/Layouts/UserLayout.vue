@@ -35,6 +35,7 @@ import Footer from '@/Components/Frontend/Footer.vue';
 import Navbar from '@/Components/Frontend/Navbar.vue';
 import Sidebar from '@/Components/Frontend/Sidebar.vue';
 import SuggestedCommunity from '@/Components/Frontend/SuggestedCommunity.vue';
+import { Head } from '@inertiajs/vue3';
 
 export default {
     data() {
@@ -43,7 +44,7 @@ export default {
         };
     },
     components: {
-        Sidebar, SuggestedCommunity, Footer, Navbar
+        Sidebar, SuggestedCommunity, Footer, Navbar,Head
     },
     methods: {},
 }

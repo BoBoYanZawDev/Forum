@@ -219,7 +219,7 @@ onMounted(() => {
     </div>
 
     <!-- Posts Feed -->
-    <div class="space-y-4" v-if="filteredPosts.length > 0">
+    <div class="space-y-4" v-if="threads.length > 0">
       <article v-for="post in filteredPosts" :key="post.id"
         class="bg-white rounded-2xl p-6 border border-gray-200 hover:border-gray-300 transition-all duration-200 shadow-sm">
         <!-- Post Header -->

@@ -20,6 +20,7 @@ class CategoryFactory extends Factory
         return [
             'name' => $name,
             'slug' => str($name)->slug(),
+            'description' => $this->faker->sentence(),
         ];
     }
 }
