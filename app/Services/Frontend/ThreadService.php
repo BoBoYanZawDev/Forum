@@ -18,7 +18,7 @@ class ThreadService
     /**
      * Store a newly created resource in storage.
      */
-    public function storeData($request)
+    public function storeData($request, $community_id = null)
     {
         try {
             $thread = new Thread();
@@ -26,6 +26,12 @@ class ThreadService
             $thread->slug = $request->title ? str()->slug($request->title) . '-' . uniqid() : str()->random(10);
             $thread->content = $request->content;
             $thread->category_id = $request->category_id;
+
+            // for community. post
+            if ($community_id != null) {
+                $thread->community_id = $community_id;
+            }
+
             $thread->is_published = $request->is_published ?? false;
             $thread->user_id = auth()->id();
             $thread->save();
@@ -51,14 +57,18 @@ class ThreadService
     /**
      * Update the specified resource in storage.
      */
-    public function updateData($request, $thread)
+    public function updateData($request, $thread , $community_id = null)
     {
-        try{
+        try {
             $thread->title = $request->title;
             $thread->slug = $request->title ? str()->slug($request->title) . '-' . uniqid() : str()->random(10);
             $thread->content = $request->content;
             $thread->category_id = $request->category_id;
             $thread->is_published = $request->is_published ?? false;
+
+            if ($community_id != null) {
+                $thread->community_id = $community_id;
+            }
             $thread->user_id = auth()->id();
             $thread->save();
 

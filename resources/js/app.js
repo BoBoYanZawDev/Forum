@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/reset.css";
 import UserLayout from "./Layouts/UserLayout.vue";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
 
 createInertiaApp({
@@ -18,10 +19,14 @@ createInertiaApp({
     resolve: (name) => {
         const pages = import.meta.glob("./Pages/**/*.vue", { eager: true });
         let page = pages[`./Pages/${name}.vue`];
+        // Auto-apply admin layout for /admin routes unless page explicitly sets layout
         if (window.location.pathname.startsWith("/admin")) {
-            page.default.layout = AdminLayout;
-            return page;
+            if (page && page.default && page.default.layout === undefined) {
+                page.default.layout = AuthenticatedLayout;
+                return page;
+            }
         }
+        // Fallback user layout when no layout specified
         if (page && page.default && page.default.layout === undefined) {
             page.default.layout = UserLayout;
         }
