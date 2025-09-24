@@ -18,7 +18,7 @@ class ThreadController extends Controller
     public function index(Request $request)
     {
         [$threads] = $this->threadService->list($request);
-        return Inertia::render('home', ['threads' => $threads]);
+        return Inertia::render('Home', ['threads' => $threads]);
     }
 
     public function store(Request $request)

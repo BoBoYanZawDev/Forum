@@ -315,7 +315,7 @@ onMounted(() => {
       </article>
     </div>
     <div v-else class="h-[50vh] flex items-center justify-center">
-      <!-- <a-empty :image="simpleImage" /> -->
+      <a-empty :image="simpleImage" />
     </div>
   </div>
 </template>

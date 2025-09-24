@@ -26,6 +26,7 @@
 
                 <!-- Navigation -->
                 <nav class="flex items-center space-x-2">
+                    <Notification/>
                     <Link v-if="$page.props.auth.user" :href="route('admin.dashboard')"
                         class="px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 transition-colors duration-200 font-medium">
                     Dashboard
@@ -48,6 +49,7 @@
     </header>
 </template>
 <script>
+import Notification from '@/Pages/Notification.vue';
 import { Link } from '@inertiajs/vue3';
 
 export default {
@@ -57,7 +59,7 @@ export default {
         }
     },
     components: {
-        Link
+        Link ,Notification
     }
 }
 </script>
